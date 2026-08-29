@@ -47,3 +47,6 @@ skills/*
 .crabbox/
 /.comux-hooks
 /.comux
+
+# Lens CLI state (npx convex dev)
+.lens/
