@@ -1,5 +1,5 @@
 import { createRequire } from "node:module";
-import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
@@ -10,11 +10,9 @@ import { copyOgAssets } from "./scripts/copy-og-assets";
 
 const require = createRequire(import.meta.url);
 
-const convexEntry = require.resolve("convex");
-const convexRoot = dirname(dirname(dirname(convexEntry)));
-const convexReactPath = join(convexRoot, "dist/esm/react/index.js");
-const convexBrowserPath = join(convexRoot, "dist/esm/browser/index.js");
-const convexValuesPath = join(convexRoot, "dist/esm/values/index.js");
+const convexReactPath = fileURLToPath(import.meta.resolve("convex/react"));
+const convexBrowserPath = fileURLToPath(import.meta.resolve("convex/browser"));
+const convexValuesPath = fileURLToPath(import.meta.resolve("convex/values"));
 const convexAuthReactPath = require.resolve("@convex-dev/auth/react");
 
 function handleRollupWarning(
